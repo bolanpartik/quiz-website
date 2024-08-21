@@ -7,6 +7,7 @@ const apiKey = 'c8NVsuj4eYyKCxx9FEB4173BOqKNQzshH0NsoqOx';
 
 const url = `https://quizapi.io/api/v1/questions?apiKey=${apiKey}&difficulty=hard&limit=2`
 
+let userScore=0;
 let index = 0;
 let apiResult = ''
 
@@ -24,28 +25,49 @@ const getQuestions = async () => {
 }
 
 const displayQuestion = () => {
-    questionContainer.textContent = '';
-    optionsContainer.innerHTML = ''
 
-    questionContainer.textContent = apiResult[index].question
+    if (apiResult && index < apiResult.length) {
 
-    submitButton.disabled = false;
+        questionContainer.textContent = '';
+        optionsContainer.innerHTML = ''
 
-    Object.entries(apiResult[index].answers).forEach(([key, option]) => {
-        if (option !== null) {
+        questionContainer.textContent = apiResult[index].question
 
-            const radioElement = document.createElement('input')
-            radioElement.type = 'radio'
-            radioElement.name = 'options'
-            radioElement.id = key
+        submitButton.disabled = false;
 
-            const radioLabel = document.createElement('label')
-            radioLabel.setAttribute('for', key)
-            radioLabel.textContent = option
+        Object.entries(apiResult[index].answers).forEach(([key, option]) => {
+            if (option !== null) {
 
-            optionsContainer.append(radioElement, radioLabel)
-            optionsContainer.append(document.createElement('br'))
-        }
+                const radioElement = document.createElement('input')
+                radioElement.type = 'radio'
+                radioElement.name = 'options'
+                radioElement.id = key
+
+                const radioLabel = document.createElement('label')
+                radioLabel.setAttribute('for', key)
+                radioLabel.textContent = option
+
+                optionsContainer.append(radioElement, radioLabel)
+                optionsContainer.append(document.createElement('br'))
+            }
+        })
+    } else {
+        displayResult()
+    }
+}
+
+const displayResult = () => {
+    questionContainer.textContent = 'Quiz Complete!';
+    optionsContainer.innerHTML = `Your score: ${userScore}/${apiResult.length}<br>`;
+    submitButton.disabled = true;
+    submitButton.style.display = 'none'
+    const resetButton = document.createElement('button')
+    resetButton.innerText = 'Reset'
+    resetButton.classList.add('button')
+    buttonContainer.appendChild(resetButton)
+    resetButton.addEventListener('click', () => {
+        getQuestion()
+        resetButton.remove()
     })
 }
 
@@ -66,9 +88,11 @@ const checkRightAnswer = () => {
 
         if (selectedAnswer == correctAnswer) {
             console.log("Correct")
+            userScore++;
         } else {
             console.log("Incorrect")
         }
+        index++;
     }
 }
 
