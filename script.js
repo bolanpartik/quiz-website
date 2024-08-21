@@ -9,6 +9,7 @@ const url = `https://quizapi.io/api/v1/questions?apiKey=${apiKey}&difficulty=har
 
 let index = 0;
 let apiResult = ''
+
 const getQuestions = async () => {
     try {
         const res = await fetch(url, {
@@ -47,5 +48,30 @@ const displayQuestion = () => {
         }
     })
 }
+
+const checkRightAnswer = () => {
+    const userAnswer = document.querySelector('input[name="options"]:checked')
+
+    let correctAnswerKey;
+    Object.keys(apiResult[index].correct_answers).forEach(key => {
+        if (apiResult[index].correct_answers[key] === 'true') {
+            correctAnswerKey = key.replace('_correct', '')
+        }
+    })
+    correctAnswer = apiResult[index].answers[correctAnswerKey]
+
+    if (userAnswer) {
+
+        const selectedAnswer = userAnswer.nextElementSibling.innerText;
+
+        if (selectedAnswer == correctAnswer) {
+            console.log("Correct")
+        } else {
+            console.log("Incorrect")
+        }
+    }
+}
+
+submitButton.addEventListener('click', checkRightAnswer)
 
 document.addEventListener('DOMContentLoaded', getQuestions)
