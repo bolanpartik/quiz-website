@@ -96,6 +96,8 @@ const checkRightAnswer = () => {
             console.log("Incorrect")
         }
         index++;
+    }else{
+        alert('Please select any option to proceed')
     }
 }
 
