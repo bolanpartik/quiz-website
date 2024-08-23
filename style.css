@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.button{
+    @apply border rounded-xl px-2 py-1 mt-4 bg-green-500 text-darkBlue hover:bg-blue-400 transition ease-in delay-200;
+}
