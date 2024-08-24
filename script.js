@@ -70,7 +70,7 @@ const displayResult = () => {
     resetButton.classList.add('button')
     buttonContainer.appendChild(resetButton)
     resetButton.addEventListener('click', () => {
-        getQuestion()
+        getQuestions()
         resetButton.remove()
     })
 }
