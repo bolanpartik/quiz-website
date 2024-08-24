@@ -95,7 +95,12 @@ const checkRightAnswer = () => {
         } else {
             console.log("Incorrect")
         }
-        index++;
+
+        setTimeout(() => {
+            index++;
+            displayQuestion()
+        }, 2000)
+
     }else{
         alert('Please select any option to proceed')
     }
