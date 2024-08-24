@@ -21,6 +21,7 @@ const getQuestions = async () => {
         console.log(apiResult)
         userScore=0;
         index=0;
+        submitButton.style.display='inline-block'
         displayQuestion()
     } catch (e) {
         console.log("Error", e)
@@ -86,7 +87,7 @@ const checkRightAnswer = () => {
     correctAnswer = apiResult[index].answers[correctAnswerKey]
 
     if (userAnswer) {
-
+        submitButton.disabled=true;
         const selectedAnswer = userAnswer.nextElementSibling.innerText;
 
         if (selectedAnswer == correctAnswer) {
