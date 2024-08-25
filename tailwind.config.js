@@ -8,7 +8,11 @@ module.exports = {
     extend: {
       colors:{
         'darkBlue':'#020617'
-      }
+      },
+      animation: {
+        fadeIn: 'fadeIn 0.5s forwards',
+        fadeOut: 'fadeOut 0.5s 1s forwards'
+      },
     },
   },
   plugins: [],
