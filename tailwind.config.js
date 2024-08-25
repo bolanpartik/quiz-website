@@ -13,6 +13,16 @@ module.exports = {
         fadeIn: 'fadeIn 0.5s forwards',
         fadeOut: 'fadeOut 0.5s 1s forwards'
       },
+      keyframes: {
+        fadeIn: {
+          '0%': { top: '0', opacity: 0 },
+          '100%': { top: '64px', opacity: 1 }
+        },
+        fadeOut: {
+          '0%': { top: '64px', opacity: 1 },
+          '100%': { top: '0', opacity: 0 }
+        },
+      },
     },
   },
   plugins: [],
