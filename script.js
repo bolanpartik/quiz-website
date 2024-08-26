@@ -2,6 +2,7 @@ const questionContainer = document.getElementById('question')
 const optionsContainer = document.getElementById('options')
 const submitButton = document.getElementById('submit-answer')
 const buttonContainer = document.getElementById('button-container')
+const showCorrectAnswer = document.getElementById('correct-answer')
 
 const apiKey = 'c8NVsuj4eYyKCxx9FEB4173BOqKNQzshH0NsoqOx';
 
@@ -96,10 +97,16 @@ const checkRightAnswer = () => {
         } else {
             console.log("Incorrect")
         }
+        
+        showCorrectAnswer.innerText = `Correct answer is : ${correctAnswer}`;
+        showCorrectAnswer.classList.replace('invisible', 'visible')
+        showCorrectAnswer.classList.replace('animate-fadeOut','animate-fadeIn')
 
         setTimeout(() => {
             index++;
             displayQuestion()
+            showCorrectAnswer.classList.replace('animate-fadeIn','animate-fadeOut')
+            showCorrectAnswer.classList.replace('visible', 'invisible')
         }, 2000)
 
     }else{
