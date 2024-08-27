@@ -6,7 +6,7 @@ const showCorrectAnswer = document.getElementById('correct-answer')
 
 const apiKey = 'c8NVsuj4eYyKCxx9FEB4173BOqKNQzshH0NsoqOx';
 
-const url = `https://quizapi.io/api/v1/questions?apiKey=${apiKey}&difficulty=hard&limit=2`
+const url = `https://quizapi.io/api/v1/questions?apiKey=${apiKey}&difficulty=hard&limit=11`
 
 let correctAnswer = ''
 let userScore=0;
